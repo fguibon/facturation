@@ -40,6 +40,8 @@ class FacturationControllerTest {
 
     private final Double total = 15_000.0;
 
+    private final String path = "/facturations";
+
     @BeforeEach
     void setup() {
 
@@ -50,7 +52,7 @@ class FacturationControllerTest {
     @Test
     void postFacturation_and_expect_badrequest() throws Exception {
 
-        mockMvc.perform(post("/"))
+        mockMvc.perform(post(path))
                 .andExpect(status().is4xxClientError());
     }
 
@@ -62,7 +64,7 @@ class FacturationControllerTest {
         String json = objectMapper.writeValueAsString(meterDto);
 
         mockMvc.perform(
-                        post("/")
+                        post(path)
                                 .contentType(APPLICATION_JSON).content(json)
                 )
                 .andExpect(status().is4xxClientError());
@@ -80,7 +82,7 @@ class FacturationControllerTest {
         when(facturationService.calculateFacturation(MeterMapper.mapToModel(meterDto))).thenReturn(facturation);
 
         mockMvc.perform(
-                    post("/")
+                    post(path)
                     .contentType(APPLICATION_JSON).content(json)
                 )
                 .andExpect(status().isOk())

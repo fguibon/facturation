@@ -43,4 +43,12 @@ public class ConsumptionDto {
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(energyType).append(amount).toHashCode();
     }
+
+    @Override
+    public String toString() {
+        return "ConsumptionDto{" +
+                "energyType=" + energyType +
+                ", amount=" + amount +
+                '}';
+    }
 }

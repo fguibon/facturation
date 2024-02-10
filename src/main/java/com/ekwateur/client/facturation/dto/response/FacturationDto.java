@@ -43,4 +43,12 @@ public class FacturationDto {
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(reference).append(total).toHashCode();
     }
+
+    @Override
+    public String toString() {
+        return "FacturationDto{" +
+                "reference='" + reference + '\'' +
+                ", total=" + total +
+                '}';
+    }
 }

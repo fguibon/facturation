@@ -15,6 +15,7 @@ public class MeterDto {
     private ClientDto clientDto;
 
     @JsonProperty("consumptions")
+    @NotNull
     private List<ConsumptionDto> consumptionDtoList;
 
     public MeterDto(ClientDto clientDto, List<ConsumptionDto> consumptionDtoList) {
@@ -52,5 +53,13 @@ public class MeterDto {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(clientDto).append(consumptionDtoList).toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "MeterDto{" +
+                "clientDto=" + clientDto +
+                ", consumptionDtoList=" + consumptionDtoList +
+                '}';
     }
 }

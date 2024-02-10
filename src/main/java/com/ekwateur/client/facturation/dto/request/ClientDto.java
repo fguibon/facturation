@@ -10,7 +10,7 @@ public class ClientDto {
     private String reference;
     @NotNull
     private ClientTypeDto type;
-
+    @NotNull
     private Double sales;
 
     public ClientDto() {}
@@ -59,5 +59,14 @@ public class ClientDto {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(reference).append(type).append(sales).toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "ClientDto{" +
+                "reference='" + reference + '\'' +
+                ", type=" + type +
+                ", sales=" + sales +
+                '}';
     }
 }
