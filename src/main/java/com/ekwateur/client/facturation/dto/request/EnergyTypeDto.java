@@ -1,5 +1,5 @@
 package com.ekwateur.client.facturation.dto.request;
 
 public enum EnergyTypeDto {
-    PARTICULIER, PRO
+    ELECTRICITY, GAZ
 }

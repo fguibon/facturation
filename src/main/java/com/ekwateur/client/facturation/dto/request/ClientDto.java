@@ -1,28 +1,24 @@
 package com.ekwateur.client.facturation.dto.request;
 
 import com.ekwateur.client.facturation.validation.ValidReference;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class ClientDto {
     @ValidReference
     private String reference;
-
-    @NotBlank
+    @NotNull
     private ClientTypeDto type;
 
     private Double sales;
+
+    public ClientDto() {}
 
     public ClientDto(String reference, ClientTypeDto type, Double sales) {
         this.reference = reference;
         this.type = type;
         this.sales = sales;
-    }
-
-    public ClientDto(String reference, ClientTypeDto type) {
-        this.reference = reference;
-        this.type = type;
     }
 
     public String getReference() {

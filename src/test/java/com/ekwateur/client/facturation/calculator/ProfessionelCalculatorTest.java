@@ -8,6 +8,7 @@ import com.ekwateur.client.facturation.model.energy.EnergyType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -17,25 +18,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 class ProfessionelCalculatorTest {
 
-    private String reference = "EKW12345678";
+    private final String reference = "EKW12345678";
 
     // Sales
-    private long salesLimit = 1000;
+    private final long salesLimit = 1000;
 
-    private double salesBelow = salesLimit - 100;
-    private double salesAbove = salesLimit + 100;
+    private final double salesBelow = salesLimit - 100;
+    private final double salesAbove = salesLimit + 100;
 
     // Prices
 
-    private double aboveLimitElectricityPrice = 0.10;
+    private final double aboveLimitElectricityPrice = 0.10;
 
     private final double aboveLimitGazPrice = 0.15;
 
     private final double belowLimitElectricityPrice = 0.20;
-    private double belowLimitGazPrice = 0.25;
+    private final double belowLimitGazPrice = 0.25;
 
-    private double amount = 100.0;
+    private final double amount = 100.0;
 
+    @InjectMocks
     private ProfessionelCalculator professionelCalculator;
 
     @BeforeEach

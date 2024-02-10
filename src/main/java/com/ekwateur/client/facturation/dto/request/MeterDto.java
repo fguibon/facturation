@@ -1,13 +1,20 @@
 package com.ekwateur.client.facturation.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.List;
 
 public class MeterDto {
+    @NotNull
+    @JsonProperty("client")
+    @Valid
     private ClientDto clientDto;
 
+    @JsonProperty("consumptions")
     private List<ConsumptionDto> consumptionDtoList;
 
     public MeterDto(ClientDto clientDto, List<ConsumptionDto> consumptionDtoList) {
