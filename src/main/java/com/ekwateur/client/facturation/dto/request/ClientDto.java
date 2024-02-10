@@ -2,6 +2,8 @@ package com.ekwateur.client.facturation.dto.request;
 
 import com.ekwateur.client.facturation.validation.ValidReference;
 import jakarta.validation.constraints.NotBlank;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class ClientDto {
     @ValidReference
@@ -10,12 +12,17 @@ public class ClientDto {
     @NotBlank
     private ClientTypeDto type;
 
-    private Long sales;
+    private Double sales;
 
-    public ClientDto(String reference, ClientTypeDto type, Long sales) {
+    public ClientDto(String reference, ClientTypeDto type, Double sales) {
         this.reference = reference;
         this.type = type;
         this.sales = sales;
+    }
+
+    public ClientDto(String reference, ClientTypeDto type) {
+        this.reference = reference;
+        this.type = type;
     }
 
     public String getReference() {
@@ -34,11 +41,27 @@ public class ClientDto {
         this.type = type;
     }
 
-    public Long getSales() {
+    public Double getSales() {
         return sales;
     }
 
-    public void setSales(Long sales) {
+    public void setSales(Double sales) {
         this.sales = sales;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ClientDto clientDto = (ClientDto) o;
+
+        return new EqualsBuilder().append(reference, clientDto.reference).append(type, clientDto.type).append(sales, clientDto.sales).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(reference).append(type).append(sales).toHashCode();
     }
 }

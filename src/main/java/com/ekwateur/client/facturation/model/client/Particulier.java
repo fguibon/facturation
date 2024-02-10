@@ -17,6 +17,10 @@ public class Particulier extends Client {
         this.nom = nom;
     }
 
+    public Particulier(String reference) {
+        super(reference);
+    }
+
     public Civilite getCivilite() {
         return civilite;
     }

@@ -2,12 +2,10 @@ package com.ekwateur.client.facturation.mapper;
 
 import com.ekwateur.client.facturation.dto.request.ClientDto;
 import com.ekwateur.client.facturation.model.client.*;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ClientMapper {
 
-    public Client mapToClient(ClientDto clientDto) {
+    public static Client mapToClient(ClientDto clientDto) {
         Client client;
         switch(ClientType.valueOf(clientDto.getType().name())) {
 

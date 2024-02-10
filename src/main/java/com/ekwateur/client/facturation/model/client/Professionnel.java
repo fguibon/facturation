@@ -6,14 +6,19 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Professionnel extends Client {
 
     private String siret;
-    private String raison;
-    private Long chiffreAffaire;
+    private String companyName;
+    private Double sales;
 
-    public Professionnel(String reference, String siret, String raison, Long chiffreAffaire) {
+    public Professionnel(String reference, String siret, String companyName, Double sales) {
         super(reference);
         this.siret = siret;
-        this.raison = raison;
-        this.chiffreAffaire = chiffreAffaire;
+        this.companyName = companyName;
+        this.sales = sales;
+    }
+
+    public Professionnel(String reference, Double sales) {
+        super(reference);
+        this.sales = sales;
     }
 
     public String getSiret() {
@@ -24,20 +29,20 @@ public class Professionnel extends Client {
         this.siret = siret;
     }
 
-    public String getRaison() {
-        return raison;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setRaison(String raison) {
-        this.raison = raison;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public Long getChiffreAffaire() {
-        return chiffreAffaire;
+    public Double getSales() {
+        return sales;
     }
 
-    public void setChiffreAffaire(Long chiffreAffaire) {
-        this.chiffreAffaire = chiffreAffaire;
+    public void setSales(Double sales) {
+        this.sales = sales;
     }
 
     @Override
@@ -48,11 +53,11 @@ public class Professionnel extends Client {
 
         Professionnel that = (Professionnel) o;
 
-        return new EqualsBuilder().appendSuper(super.equals(o)).append(siret, that.siret).append(raison, that.raison).append(chiffreAffaire, that.chiffreAffaire).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(o)).append(siret, that.siret).append(companyName, that.companyName).append(sales, that.sales).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).appendSuper(super.hashCode()).append(siret).append(raison).append(chiffreAffaire).toHashCode();
+        return new HashCodeBuilder(17, 37).appendSuper(super.hashCode()).append(siret).append(companyName).append(sales).toHashCode();
     }
 }
