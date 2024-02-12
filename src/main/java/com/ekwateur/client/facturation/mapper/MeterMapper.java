@@ -9,8 +9,8 @@ public class MeterMapper {
 
     public static Meter mapToModel(MeterDto meterDto) {
         return new Meter(
-                ClientMapper.mapToClient(meterDto.getClientDto()),
-                meterDto.getConsumptionDtoList()
+                ClientMapper.mapToClient(meterDto.clientDto()),
+                meterDto.consumptionDtoList()
                         .stream()
                         .map(ConsumptionMapper::mapToModel).collect(Collectors.toList())
         );

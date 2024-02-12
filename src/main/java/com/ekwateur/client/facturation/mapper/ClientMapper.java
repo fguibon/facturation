@@ -7,12 +7,12 @@ public class ClientMapper {
 
     public static Client mapToClient(ClientDto clientDto) {
         Client client;
-        switch(ClientType.valueOf(clientDto.getType().name())) {
+        switch(ClientType.valueOf(clientDto.type().name())) {
 
-            case PARTICULIER -> client = new Particulier(clientDto.getReference(), Civilite.MME, "prenom", "nom");
-            case PRO -> client = new Professionnel(clientDto.getReference(), "siret", "raison", clientDto.getSales());
+            case PARTICULIER -> client = new Particulier(clientDto.reference(), Civilite.MME, "prenom", "nom");
+            case PRO -> client = new Professionnel(clientDto.reference(), "siret", "raison", clientDto.sales());
             default ->
-                    throw new IllegalStateException("Unexpected value: " + ClientType.valueOf(clientDto.getType().name()));
+                    throw new IllegalStateException("Unexpected value: " + ClientType.valueOf(clientDto.type().name()));
         }
         return client;
     }

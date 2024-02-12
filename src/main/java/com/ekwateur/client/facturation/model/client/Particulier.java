@@ -60,4 +60,13 @@ public class Particulier extends Client {
     public int hashCode() {
         return new HashCodeBuilder(17, 37).appendSuper(super.hashCode()).append(civilite).append(prenom).append(nom).toHashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Particulier{" +
+                "civilite=" + civilite +
+                ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }

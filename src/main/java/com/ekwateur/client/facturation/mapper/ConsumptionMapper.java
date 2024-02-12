@@ -8,8 +8,8 @@ public class ConsumptionMapper {
 
     public static Consumption mapToModel(ConsumptionDto consumptionDto) {
         return new Consumption(
-                EnergyType.valueOf(consumptionDto.getEnergyType().name()),
-                        consumptionDto.getAmount()
+                EnergyType.valueOf(consumptionDto.energyType().name()),
+                        consumptionDto.amount()
                 );
     }
 }

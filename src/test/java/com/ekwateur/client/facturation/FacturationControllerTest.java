@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -56,9 +59,10 @@ class FacturationControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 
-    @Test
-    void postFacturation_with_bad_reference_and_expect_badrequest() throws Exception {
-        ClientDto clientDto = new ClientDto("mock", ClientTypeDto.PRO,0.0);
+    @ParameterizedTest
+    @MethodSource
+    void postFacturation_with_bad_reference_and_expect_badrequest(String reference) throws Exception {
+        ClientDto clientDto = new ClientDto(reference, ClientTypeDto.PRO,0.0);
         MeterDto meterDto = new MeterDto(clientDto, List.of());
 
         String json = objectMapper.writeValueAsString(meterDto);
@@ -68,6 +72,10 @@ class FacturationControllerTest {
                                 .contentType(APPLICATION_JSON).content(json)
                 )
                 .andExpect(status().is4xxClientError());
+    }
+
+    public static Stream<String> postFacturation_with_bad_reference_and_expect_badrequest() {
+        return Stream.of(null, "", "dummy", "EKW123456789");
     }
 
     @Test

@@ -60,4 +60,13 @@ public class Professionnel extends Client {
     public int hashCode() {
         return new HashCodeBuilder(17, 37).appendSuper(super.hashCode()).append(siret).append(companyName).append(sales).toHashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Professionnel{" +
+                "siret='" + siret + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", sales=" + sales +
+                '}';
+    }
 }

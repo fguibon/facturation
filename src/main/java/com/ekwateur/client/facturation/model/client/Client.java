@@ -1,11 +1,11 @@
 package com.ekwateur.client.facturation.model.client;
 
-import com.ekwateur.client.facturation.validation.ValidReference;
+import jakarta.validation.constraints.Pattern;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public abstract class Client {
-    @ValidReference
+    @Pattern(regexp = "^EKW(\\d){8}$")
     private String reference;
 
     public Client(String reference) {
@@ -34,6 +34,13 @@ public abstract class Client {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(reference).toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "reference='" + reference + '\'' +
+                '}';
     }
 }
 
